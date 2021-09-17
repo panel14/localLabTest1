@@ -1,0 +1,129 @@
+<!DOCTYPE HTML >
+<html>
+<head>
+	<title>lab1</title>
+	<style>
+		body {
+			background-image: url(res/img/back.jpg);
+			background-repeat: no-repeat;
+			background-size: 100%;
+		}
+
+        table {
+            width: 100%;
+            height: auto;
+            border-collapse: separate;
+            table-layout: fixed;
+            background: #000000;
+            opacity: 0.7;
+            filter: blur();
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 12pt;
+            color: aqua;
+        }
+
+        form { margin: 6px;}
+
+		table.inner th { border: 1px solid gray; }
+
+		th img{ 
+			width: 80%;
+			height: 80%;
+		}
+
+		tr.first th {
+			border: 3px solid gray;
+		}
+
+		table.inner {
+			padding: 4px;
+			margin: 6px;
+			caption-side: top
+		}
+
+        textarea {
+			margin: 2px;
+			padding: 2px;
+			color: aqua;
+			background-color: royalblue;
+        }
+
+		input[type="button"] {
+			margin: 6px;
+			padding: 3px 6px 3px 6px;
+			color: aqua;
+			background-color: royalblue;
+		}
+
+		input#btn_send {
+			padding: 3px 7px 3px 7px;
+			margin: 10px;
+		}
+
+		#header {
+			font-family: monospace;
+			font-size: 18pt;
+			color: lawngreen;
+			border: 1px solid grey;
+			height: 20pt;
+			text-align: center;
+		}
+	</style>
+	<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script defer type="text/javascript" src="JSCode.js"></script>
+</head>
+	<body>
+		<table>
+			<tr>
+				<th id="header" colspan="4">Верзаков Александр Юрьевич, группа P3232, ИСУ: 312434</th>
+			</tr>
+
+			<tr>
+				<th>
+					Введите данные:<br />
+					<form method="get" id="ajax_form" action="">
+
+						X:	<input type="button" name="b1" value="-4" onclick="press(this)">
+						<input type="button" name="b2" value="-3" onclick="press(this)">
+						<input type="button" name="b3" value="-2" onclick="press(this)">
+						<input type="button" name="b4" value="-1" onclick="press(this)">
+						<input type="button" name="b5" value="0" onclick="press(this)">
+						<input type="button" name="b6" value="1" onclick="press(this)">
+						<input type="button" name="b7" value="2" onclick="press(this)">
+						<input type="button" name="b8" value="3" onclick="press(this)">
+						<input type="button" name="b9" value="4" onclick="press(this)"><br />
+
+						Y: <textarea name="yData" cols="25" rows="1" id="yField">[-5;5]</textarea><br />
+						R: <textarea name="rData" cols="25" rows="1" id="rField">[1;4]</textarea><br />
+
+						<input type="button" id="btn_send" value="Выполнить" onclick="validate(form)" />
+					</form>
+				</th>
+				<th>
+					<img src="res/img/areas.png" />
+				</th>
+				<th>
+					<table class="inner" id="inXYR">
+						<caption>Введённые данные (ответ от сервера)</caption>
+						<tr class="first">
+							<th>X</th>
+							<th>Y</th>
+							<th>R</th>
+						</tr>
+					</table>
+				</th>
+				<th>
+					<table class="inner" id="inData">
+						<caption>Результаты запросов</caption>
+						<tr class="first">
+							<th>Текущее время, ч:м:с</th>
+							<th>Время выполнения скрипта, с</th>
+							<th>Попадание в область</th>
+						</tr>
+					</table>
+				</th>
+			</tr>
+			<tr class="log" colspan="4"></tr>
+		</table>
+	</body>
+</html>
