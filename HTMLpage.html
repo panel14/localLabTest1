@@ -60,6 +60,10 @@
 			margin: 10px;
 		}
 
+        input:hover {
+            background-color: dodgerblue;
+        }
+
 		#header {
 			font-family: monospace;
 			font-size: 18pt;
@@ -87,14 +91,14 @@
 						<input type="button" name="b2" value="-3" onclick="press(this)">
 						<input type="button" name="b3" value="-2" onclick="press(this)">
 						<input type="button" name="b4" value="-1" onclick="press(this)">
-						<input type="button" name="b5" value="0" onclick="press(this)">
+						<input id ="zero" type="button" name="b5" value="0" onclick="press(this)">
 						<input type="button" name="b6" value="1" onclick="press(this)">
 						<input type="button" name="b7" value="2" onclick="press(this)">
 						<input type="button" name="b8" value="3" onclick="press(this)">
 						<input type="button" name="b9" value="4" onclick="press(this)"><br />
 
-						Y: <textarea name="yData" cols="25" rows="1" id="yField">[-5;5]</textarea><br />
-						R: <textarea name="rData" cols="25" rows="1" id="rField">[1;4]</textarea><br />
+						Y: <textarea name="yData" cols="25" rows="1" id="yField"></textarea><br />
+						R: <textarea name="rData" cols="25" rows="1" id="rField"></textarea><br />
 
 						<input type="button" id="btn_send" value="Выполнить" onclick="validate(form)" />
 					</form>

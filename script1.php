@@ -10,7 +10,7 @@ function Sanitize(){
 
 function Validate($arr){
     foreach($arr as $num){
-        if (str_contains($num, "err")){                                 //заменить условие на регулярку, с запятой работает
+        if ($num == null){                                 
             header('X-PHP-Response-Code: 400',true, 400);
             $result = array("error" => "Uncorrect data");
             echo json_encode($result);

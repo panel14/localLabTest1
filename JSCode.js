@@ -18,7 +18,7 @@ function validate(form) {
 function checkFieldValue(str, valueType, range) {
     if (str == "")
         return "Не введено значение " + valueType + "\n";
-    else if (isNaN(parseInt(str))) 
+    else if (!/^-?\d+([.,]\d+)?$/.test(str))
         return "Поле " + valueType + " может содержать только цифры\n";
     else if (parseInt(str) < range[0] || parseInt(str) > range[1])
         return "Значение " + valueType + " выходит за пределы допустимого диапазона ["+ range[0] + ";" + range[1] +"]\n";
@@ -42,12 +42,12 @@ function sendRequest() {
         },
         success: function (data, text, xhr) {
             result = data;
-            $('#inData tr:last').after('<tr><th>' + result.curTime + '<th>' + result.scriptTime + '<th>' + result.isIn);
-            $('#inXYR tr:last').after('<tr> <th>' + result.x + '<th>' + result.y + '<th>' + result.r);
-            $('tr.log').html('Статус ответа сервера: ' + text + '<br /> Код ответа сервера: ' + xhr.status);
+            $('#inData tr:last').after(`<tr><th> ${result.curTime} <th> ${result.scriptTime} <th> ${result.isIn}`)
+            $('#inXYR tr:last').after(`<tr> <th> ${result.x} <th> ${result.y} <th> ${result.r}`);
+            $('tr.log').html(`Статус ответа сервера: ${text} <br /> Код ответа сервера: ${xhr.status}`);
         },
         error: function (jqXHR) {
-            $('tr.log').html('Статус ответа сервера: ' + jqXHR.status + '<br /> Код ответа сервера: ' + jqXHR.statusText);
+            $('tr.log').html(`Статус ответа сервера: ${jqXHR.status} <br /> Код ответа сервера: ${jqXHR.statusText}`);
         }
     });
 }
