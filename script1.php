@@ -17,7 +17,6 @@ function Validate($arr){
             exit;
         }
     }
-    return $arr;
 }
 
 $start = microtime(true);
@@ -42,6 +41,7 @@ elseif ($nms['x'] > 0 && $nms['y'] < 0)
     $quat = "IV";
 elseif ($nms['x'] == 0 && $nms['y'] == 0)
     $quat = "0";
+
 $answer = "";
 
 switch($quat){
