@@ -1,5 +1,7 @@
 // JavaScript source code
 xButtonValue = 0;
+lastBtn = "";
+curBtn = "";
 
 $('#yField').focus();
 $('textarea').focus(function () { $(this).css('background', '#191970') });
@@ -20,13 +22,15 @@ function checkFieldValue(str, valueType, range) {
         return "Не введено значение " + valueType + "\n";
     else if (!/^-?\d+([.,]\d+)?$/.test(str))
         return "Поле " + valueType + " может содержать только цифры\n";
-    else if (parseInt(str) < range[0] || parseInt(str) > range[1])
+    else if (parseInt(str) <= range[0] || parseInt(str) >= range[1])
         return "Значение " + valueType + " выходит за пределы допустимого диапазона ["+ range[0] + ";" + range[1] +"]\n";
     return "";
 }
 
 function press(button) {
-    xButtonValue = button.value;
+    $(`[value = ${xButtonValue}]`).css('background', '#4169E1')
+    $(button).css('background', '#191970');
+    xButtonValue = button.value;    
 }
 
 function sendRequest() {

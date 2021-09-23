@@ -1,5 +1,4 @@
 <?php
-
 function Sanitize(){
     foreach ($_GET as $item){
         $item = strip_tags($item);
@@ -10,7 +9,7 @@ function Sanitize(){
 
 function Validate($arr){
     foreach($arr as $num){
-        if ($num == null){                                 
+        if (!is_numeric($num)){
             header('X-PHP-Response-Code: 400',true, 400);
             $result = array("error" => "Uncorrect data");
             echo json_encode($result);
@@ -20,6 +19,10 @@ function Validate($arr){
 }
 
 $start = microtime(true);
+
+/*session_start();
+if (!isset($_SESSION["data"]))
+    $_SESSION["data"] = array();*/
 
 Sanitize();
 
@@ -83,6 +86,8 @@ $result = array(
     "scriptTime" => $diff,
     "curTime" => $curTime
     );
+
+//array_push($_SESSION["data"], $result);
 
 header('Content-Type: application/json; charset=utf-8');
 echo json_encode($result);
