@@ -7,44 +7,37 @@ function Sanitize(){
     }
 }
 
-function Validate($arr){
+function Validate($val, $range){
     $fail = "";
-    $ranges = [];
-    $ranges[1] = $_GET["xRange"];
-    $ranges[2] = $_GET["yRange"];
-    $ranges[3] = $_GET["rRange"];
+    if (strlen($val) == 0)
+        $fail .= "Empty value : $val";
+    elseif (!is_numeric($val) == 1)
+        $fail .= "Ucorrect symbols: $val";
+    elseif ((float)$val <= $range[0] || (float)$val >= $range[1])
+        $fail .= "Value out of range: $val";
 
-    $cnt = 1;
-    foreach($arr as $num){
-        $strNum = strval($num);
-        echo $strNum;
-        if ($num == "")
-            $fail . "Empty value";
-        elseif (!preg_match("/^-?\d+([.,]\d+)?$/u", $num))
-            $fail . "Ucorrect symbols";
-        elseif ($num <= $ranges[$cnt][0] || $num >= $ranges[$cnt][1])
-            $fail . "Uncorrect range";
-
-        if ($fail != "")
-            GetBadReq();
-        $cnt++;
-    }
+    if ($fail != "")
+        GetBadReq($fail);
 }
 
 
-function GetBadReq(){
+function GetBadReq($fail){
     header('X-PHP-Response-Code: 400',true, 400);
+    echo $fail;
     exit;
 }
 
 function GetPoint(){
-    $nms = array(
-        'x' => $_GET["xVal"],
-        'y' => $_GET["yVal"],
-        'r' => $_GET["rVal"]
-        );
 
-    Validate($nms);
+    Validate($_GET['xVal'], [-4, 4]);
+    Validate($_GET['yVal'],[-5, 5]);
+    Validate($_GET['rVal'], [1, 4]);
+
+    $nms = array(
+    'x' => $_GET["xVal"],
+    'y' => $_GET["yVal"],
+    'r' => $_GET["rVal"]
+    );
 
     $quat = "I";
 
@@ -126,5 +119,4 @@ else{
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($point);
 }
-
 ?>
