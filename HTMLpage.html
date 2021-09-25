@@ -61,10 +61,6 @@
 			margin: 10px;
 		}
 
-        input:hover {
-            background-color: dodgerblue;
-        }
-
 		#header{
 			font-family: monospace;
 			font-size: 24px;
@@ -94,8 +90,8 @@
 						<input type="button" name="b8" value="3" onclick="press(this)">
 						<input type="button" name="b9" value="4" onclick="press(this)"><br />
 
-						Y: <textarea name="yData" cols="25" rows="1" id="yField"></textarea><br />
-						R: <textarea name="rData" cols="25" rows="1" id="rField"></textarea><br />
+						Y: <textarea name="yData" cols="25" rows="1" id="yField" maxlength="4"></textarea><br />
+						R: <textarea name="rData" cols="25" rows="1" id="rField" maxlength="4"></textarea><br />
 
 						<input type="button" id="btn_send" value="Выполнить" onclick="validate(form)" />
 					</form>
